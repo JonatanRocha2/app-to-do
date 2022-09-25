@@ -2,5 +2,22 @@
   "dependencies": {
     "toastr": "^2.1.4"
   },
-  "type": "module"
+  "type": "module",
+  "name": "todo",
+  "description": "depende de npm install --save toastr https://github.com/CodeSeven/toastr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonatanRocha2/app-to-do.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonatanRocha2/app-to-do/issues"
+  },
+  "homepage": "https://github.com/JonatanRocha2/app-to-do#readme"
 }

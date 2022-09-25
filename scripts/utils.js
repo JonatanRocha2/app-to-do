@@ -13,7 +13,7 @@ function validarCampo(dados) {
 
     function mensagensDeErro(tipoDoErro){
         const mensagens = {
-            texto: 'Por favor, preencha este campo!',
+            text: 'Por favor, preencha este campo!',
             email: 'Por favor, insira um email!',
             senha: 'Por favor, insira uma senha!'
         }
