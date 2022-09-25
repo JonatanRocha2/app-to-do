@@ -93,7 +93,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd app-to-do-main
+  cd app-to-do
 ```
 
 Install dependencies
