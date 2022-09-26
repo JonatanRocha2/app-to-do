@@ -1,4 +1,4 @@
-import { urlCreateUser, urlGetMe, urlLogin } from "./base-url-service.js"
+import { urlBase2, urlCreateUser, urlGetMe, urlLogin } from "./base-url-service.js"
 import { deleteToken, getToken, setToken } from "/services/storage-service.js"
 
 let minhaHeader = new Headers()
@@ -18,17 +18,17 @@ function login(email, password){
         body: dados
     }
 
-    fetch(`${urlLogin}`, requisicao)
-    .then(Response => {
-        if(Response.ok) {   
-            Response.json()
+    fetch(`${urlBase2}/users/login`, requisicao)
+    .then(response => {
+        if(response.ok) {   
+            response.json()
             .then(result => {
                 setToken(result.jwt)
                 location.href = '../tarefas.html'   
             })
         }
         else {
-            Response.json()
+            response.json()
             .then(result => {
                 toastr.error(result)
             })
@@ -44,10 +44,10 @@ function cadastro(user){
         body: JSON.stringify(user)
     }
 
-    fetch(`${urlCreateUser}`, requisicao)
-    .then(Response => {
-        if(Response.ok) {
-            Response.json()
+    fetch(`${urlBase2}/users`, requisicao)
+    .then(response => {
+        if(response.ok) {
+            response.json()
             .then(result => {
                 toastr.success('Cadastro realizado com sucesso')
                 setTimeout(() => {
@@ -56,7 +56,7 @@ function cadastro(user){
             })
         }
         else {
-            Response.json()
+            response.json()
             .then(result => {
                 toastr.error(result)
             })
@@ -75,9 +75,9 @@ async function getUser(user){
     }
 
         fetch(`${urlGetMe}`, requisicao)
-        .then(Response => {
-            if(Response.ok) {
-                Response.json()
+        .then(response => {
+            if(response.ok) {
+                response.json()
                 .then(result => {
                     resolve(result)
                 })

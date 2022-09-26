@@ -12,9 +12,9 @@ async function pegarTarefas(){
             headers: minhaHeader
         }
         fetch(`${urlTask}`, requisicao)
-        .then(Response => {
-            if(Response.ok){
-                Response.json()
+        .then(response => {
+            if(response.ok){
+                response.json()
                 .then(result => {
                     resolve(result)
                 })
@@ -41,15 +41,15 @@ async function novaTarefa(descricao){
         }
 
         fetch(`${urlTask}`, requisicao)
-        .then(Response => {
-            if(Response.ok){
-                Response.json()
+        .then(response => {
+            if(response.ok){
+                response.json()
                 .then(result => {
                     resolve(result)
                 })
             }
             else {
-                Response.json()
+                response.json()
                 .then(result => {
                     toastr.error(result)
                     result(null)
