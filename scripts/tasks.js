@@ -9,7 +9,7 @@ const usuario = await getUser()
 if(usuario){
     // setar nome de usuario
     const nomeCompletoUsuario = document.getElementById('userName')
-    console.log(nomeCompletoUsuario)
+    // console.log(nomeCompletoUsuario)
     nomeCompletoUsuario.innerHTML = usuario.firstName + ' ' + usuario.lastName
 
     //pegar tarefa
@@ -27,6 +27,8 @@ document.querySelector('form').addEventListener('submit', async event => {
     event.preventDefault()
 
     const descricaoDaTarefa = document.getElementById('novaTarefa')
+
+    // console.log(descricaoDaTarefa)
 
     // prevenir que tarefa em branco nao seja criada
     if(descricaoDaTarefa.value.length !== 0){
@@ -46,24 +48,28 @@ document.querySelector('form').addEventListener('submit', async event => {
 // mostrar tarefas criadas
 
 function mostrarTarefa(){
-    const mostrarTarefaPendente = document.getElementsByClassName('tarefas-pendentes')
+    const mostrarTarefaPendente = document.querySelector('.tarefas-pendentes')
 
     // console.log(mostrarTarefaPendente)
 
     const tarefaPendente = tarefas.filter(tarefa => tarefa.completed == false)
     let tarefaPendenteHTML = ''
 
+    console.log(tarefaPendente)
+
     for(let tarefa of tarefaPendente){
         tarefaPendenteHTML += `
-        <li class="tarefa" id='${tarefa.id}'>
+        <li class="tarefa" id="${tarefa.id}">
         <div class="not-done"></div>
         <div class="descricao">
-          <p class="nome">${tarefa.description}'</p>
-          <p class="timestamp"> Criada em: ${tarefa.createdAt} </p>
+          <p class="nome">${tarefa.description}</p>
+          <p class="timestamp">Criada em: ${tarefa.createdAt}</p>
         </div>
       </li>`
     }
     mostrarTarefaPendente.innerHTML = tarefaPendenteHTML
+
+    console.log(mostrarTarefaPendente)
 }
 
 // encerrar sessão
