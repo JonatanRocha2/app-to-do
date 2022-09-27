@@ -1,5 +1,5 @@
 import { getUser } from "../services/user-service.js"
-import { novaTarefa, pegarTarefas } from "../services/task-service.js"
+import { concluirTarefa, novaTarefa, pegarTarefas } from "../services/task-service.js"
 
 let tarefas = undefined
 
@@ -55,7 +55,7 @@ function mostrarTarefa(){
     const tarefaPendente = tarefas.filter(tarefa => tarefa.completed == false)
     let tarefaPendenteHTML = ''
 
-    console.log(tarefaPendente)
+    // console.log(tarefaPendente)
 
     for(let tarefa of tarefaPendente){
         tarefaPendenteHTML += `
@@ -69,8 +69,23 @@ function mostrarTarefa(){
     }
     mostrarTarefaPendente.innerHTML = tarefaPendenteHTML
 
-    console.log(mostrarTarefaPendente)
+    // console.log(mostrarTarefaPendente)   
 }
+
+const completeTarefaCheckboxes = document.querySelectorAll('.not-done')
+    completeTarefaCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', event => {
+            concluirTarefa(event.target.dataset.id, event.target.dataset.completed)
+        })
+})
+
+const tarefasConcluidas = document.querySelector('.tarefas-terminadas')
+
+
+
+
+
+
 
 // encerrar sessão
 

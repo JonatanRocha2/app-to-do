@@ -59,4 +59,50 @@ async function novaTarefa(descricao){
     })
 }
 
-export { pegarTarefas, novaTarefa }
+async function concluirTarefa(idTask, completed){
+    return new Promise(resolve => {
+
+        const tarefaCompleta = completed == 'true'
+
+        const requisicao = {
+            method: 'PUT',
+            headers: minhaHeader,
+            body: JSON.stringify({
+                completed: !tarefaCompleta
+            })
+        }
+
+        fetch(`${urlBase2}/tasks/${idTask}`, requisicao)
+        .then(response => {
+            response.json()
+            .then(task => {
+                pegarTarefas()
+            })
+        })
+    })
+}
+
+async function excluirTarefa(idTask){
+    return new Promise(resolve => {
+
+        const requisicao = {
+            method: 'DELETE',
+            headers: minhaHeader
+        }
+
+        fetch(`${urlBase2}/tasks/${idTask}`, requisicao)
+        .then(response => {
+            response.json()
+            .then(del => {
+                if(response.ok){
+                    toastr.success('Tarefa deletada com sucesso.')
+                }
+                else {
+                    toastr.error('Tarefa não encontrada.')
+                }
+            })
+        })
+    })
+}
+
+export { pegarTarefas, novaTarefa, excluirTarefa, concluirTarefa }
