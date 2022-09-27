@@ -74,7 +74,7 @@ async function getUser(){
         headers: minhaHeader
     }
 
-    console.log(requisicao)
+    // console.log(requisicao)
 
         fetch(`${urlBase2}/users/getMe`, requisicao)
         .then(response => {

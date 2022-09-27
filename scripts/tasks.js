@@ -9,6 +9,7 @@ const usuario = await getUser()
 if(usuario){
     // setar nome de usuario
     const nomeCompletoUsuario = document.getElementById('userName')
+    console.log(nomeCompletoUsuario)
     nomeCompletoUsuario.innerHTML = usuario.firstName + ' ' + usuario.lastName
 
     //pegar tarefa
@@ -45,7 +46,7 @@ document.querySelector('form').addEventListener('submit', async event => {
 // mostrar tarefas criadas
 
 function mostrarTarefa(){
-    const mostrarTarefaPendente = document.querySelector('.tarefas-pendentes')
+    const mostrarTarefaPendente = document.getElementsByClassName('tarefas-pendentes')
 
     // console.log(mostrarTarefaPendente)
 
@@ -58,10 +59,9 @@ function mostrarTarefa(){
         <div class="not-done"></div>
         <div class="descricao">
           <p class="nome">${tarefa.description}'</p>
-          <p class="timestamp"> Criada em: ${formatDate(tarefa.createdAt)} </p>
+          <p class="timestamp"> Criada em: ${tarefa.createdAt} </p>
         </div>
-      </li>
-      `
+      </li>`
     }
     mostrarTarefaPendente.innerHTML = tarefaPendenteHTML
 }

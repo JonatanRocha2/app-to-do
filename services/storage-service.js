@@ -2,12 +2,12 @@ function setToken(token){
     localStorage.setItem('token', token)
 }
 
-function getToken(token){
-    localStorage.getItem('token', token)
+function getToken(){
+    return localStorage.getItem('token')
 }
 
-function deleteToken(token){
-    localStorage.removeItem('token', token)
+function deleteToken(){
+    localStorage.removeItem('token')
 }
 
 export { setToken, getToken, deleteToken }

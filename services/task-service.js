@@ -1,5 +1,5 @@
 import { urlBase2 } from "./base-url-service.js"
-import { getToken } from "/services/storage-service.js"
+import { getToken } from "./storage-service.js"
 
 let minhaHeader = new Headers()
 minhaHeader.append('Content-Type', 'application/json')
