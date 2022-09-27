@@ -1,5 +1,5 @@
-import { urlBase2, urlCreateUser, urlGetMe, urlLogin } from "./base-url-service.js"
-import { deleteToken, getToken, setToken } from "/services/storage-service.js"
+import { urlBase2 } from "./base-url-service.js"
+import { getToken, setToken } from "./storage-service.js"
 
 let minhaHeader = new Headers()
 minhaHeader.append("Content-Type", "application/json")
@@ -64,9 +64,9 @@ function cadastro(user){
     })
 }
 
-async function getUser(user){
+async function getUser(){
 
-    return new Promise(resolve => {
+    return new Promise(resolve => { 
         minhaHeader.append('authorization', getToken())
 
     const requisicao = {
@@ -74,7 +74,9 @@ async function getUser(user){
         headers: minhaHeader
     }
 
-        fetch(`${urlGetMe}`, requisicao)
+    console.log(requisicao)
+
+        fetch(`${urlBase2}/users/getMe`, requisicao)
         .then(response => {
             if(response.ok) {
                 response.json()
@@ -89,9 +91,9 @@ async function getUser(user){
     })
 }
 
-function sair(){
-    deleteToken()
-    location.href = '../index.html'
-}
+// function sair(){
+//     deleteToken()
+//     location.href = '../index.html'
+// }
 
-export { login, cadastro, getUser, sair }
+export { login, cadastro, getUser }

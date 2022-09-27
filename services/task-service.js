@@ -1,4 +1,4 @@
-import { urlTask } from "./base-url-service.js"
+import { urlBase2 } from "./base-url-service.js"
 import { getToken } from "/services/storage-service.js"
 
 let minhaHeader = new Headers()
@@ -11,7 +11,7 @@ async function pegarTarefas(){
             method: 'GET',
             headers: minhaHeader
         }
-        fetch(`${urlTask}`, requisicao)
+        fetch(`${urlBase2}/tasks`, requisicao)
         .then(response => {
             if(response.ok){
                 response.json()
@@ -30,8 +30,8 @@ async function novaTarefa(descricao){
     return new Promise(resolve => {
         
         const dados = {
-            descricao: descricao,
-            completo: false
+            description: descricao,
+            completed: false
         }
 
         const requisicao = {
@@ -40,7 +40,7 @@ async function novaTarefa(descricao){
             body: JSON.stringify(dados)
         }
 
-        fetch(`${urlTask}`, requisicao)
+        fetch(`${urlBase2}/tasks`, requisicao)
         .then(response => {
             if(response.ok){
                 response.json()
@@ -52,7 +52,7 @@ async function novaTarefa(descricao){
                 response.json()
                 .then(result => {
                     toastr.error(result)
-                    result(null)
+                    resolve(null)
                 })
             }
         })

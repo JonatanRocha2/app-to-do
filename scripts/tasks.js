@@ -1,4 +1,4 @@
-import { getUser, sair } from "../services/user-service.js"
+import { getUser } from "../services/user-service.js"
 import { novaTarefa, pegarTarefas } from "../services/task-service.js"
 
 let tarefas = undefined
@@ -16,9 +16,9 @@ if(usuario){
     tarefas.reverse()
     mostrarTarefa()
 }
-else {
-    sair()
-}
+// else {
+//     sair()
+// }
 
 // adicionar nova tarefa
 
@@ -57,7 +57,7 @@ function mostrarTarefa(){
         <li class="tarefa" id='${tarefa.id}'>
         <div class="not-done"></div>
         <div class="descricao">
-          <p class="nome">${tarefa.desciption}'</p>
+          <p class="nome">${tarefa.description}'</p>
           <p class="timestamp"> Criada em: ${formatDate(tarefa.createdAt)} </p>
         </div>
       </li>
@@ -68,10 +68,10 @@ function mostrarTarefa(){
 
 // encerrar sessão
 
-const botaoSair = document.getElementById('closeApp')
-botaoSair.addEventListener('click', event => {
-    event.preventDefault()
-    sair()
+// const botaoSair = document.getElementById('closeApp')
+// botaoSair.addEventListener('click', event => {
+//     event.preventDefault()
+//     sair()
 
-    // console.log(botaoSair)
-})
+//     // console.log(botaoSair)
+// })

@@ -3,11 +3,11 @@ function setToken(token){
 }
 
 function getToken(token){
-    localStorage.getItem('token')
+    localStorage.getItem('token', token)
 }
 
 function deleteToken(token){
-    localStorage.removeItem('token')
+    localStorage.removeItem('token', token)
 }
 
 export { setToken, getToken, deleteToken }
