@@ -17,9 +17,9 @@ if(usuario){
     tarefas.reverse()
     mostrarTarefa()
 }
-// else {
-//     sair()
-// }
+else {
+    sair()
+}
 
 // adicionar nova tarefa
 
@@ -36,7 +36,7 @@ document.querySelector('form').addEventListener('submit', async event => {
         if (tarefaCriada) {
             toastr.success('Nova tarefa criada com sucesso')
             descricaoDaTarefa.value = ''
-            tarefas.unshift(tarefaCriada)
+            tarefas.unshift(tarefaCriada) 
             mostrarTarefa()
         }
     }
@@ -48,7 +48,7 @@ document.querySelector('form').addEventListener('submit', async event => {
 // mostrar tarefas criadas
 
 function mostrarTarefa(){
-    const mostrarTarefaPendente = document.querySelector('.tarefas-pendentes')
+    const mostrarTarefaPendente = document.querySelector('#tarefa-pendente')
 
     const tarefaPendente = tarefas.filter(tarefa => tarefa.completed == false)
     let tarefaPendenteHTML = ''
@@ -64,40 +64,13 @@ function mostrarTarefa(){
       </li>`
     }
     mostrarTarefaPendente.innerHTML = tarefaPendenteHTML
+
 }
-
-// mostrar tarefas concluidas
-
-function concluirTarefa(){
-    const mostrarTarefaConcluida = document.querySelector('.tarefas-terminadas')
-    // console.log(mostrarTarefaPendente)
-
-    const tarefaConcluida = tarefas.filter(tarefa => tarefa.completed)
-    let tarefaConcluidaHTML = ''
-
-    for(let tarefa of tarefaConcluida){
-        tarefaConcluidaHTML += `
-        <li class="tarefa" id="${tarefa.id}">
-        <div class="done"></div>
-        <div class="descricao">
-          <p class="nome">${tarefa.description}</p>
-          <p class="timestamp">Criada em: ${tarefa.createdAt}</p>
-        </div>
-      </li>`
-    }
-    mostrarTarefaConcluida.innerHTML = tarefaConcluidaHTML
-}
-
-
-// clicar no botao e criar a tarefa
 
 
 // encerrar sessão
 
 const botaoSair = document.getElementById('closeApp')
 botaoSair.addEventListener('click', event => {
-    // event.preventDefault()
     sair()
-
-    // console.log(botaoSair)
 })
