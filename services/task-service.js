@@ -59,25 +59,35 @@ async function novaTarefa(descricao){
     })
 }
 
-async function concluirTarefa(idTask, completed){
+async function concluirTarefa(descricao, idTask){
     return new Promise(resolve => {
 
-        const tarefaCompleta = completed == 'true'
+        const dados = {
+            description: descricao,
+            completed: true
+        }
 
         const requisicao = {
             method: 'PUT',
             headers: minhaHeader,
-            body: JSON.stringify({
-                completed: !tarefaCompleta
-            })
+            body: JSON.stringify(dados)
         }
 
         fetch(`${urlBase2}/tasks/${idTask}`, requisicao)
         .then(response => {
-            response.json()
-            .then(task => {
-                pegarTarefas()
-            })
+            if(response.ok){
+                response.json()
+                .then(result => {
+                    resolve(result)
+                })
+            }
+            else {
+                response.json()
+                .then(result => {
+                    toastr.error(result)
+                    resolve(null)
+                })
+            }
         })
     })
 }

@@ -1,5 +1,5 @@
-import { getUser } from "../services/user-service.js"
-import { concluirTarefa, novaTarefa, pegarTarefas } from "../services/task-service.js"
+import { getUser, sair } from "../services/user-service.js"
+import { novaTarefa, pegarTarefas } from "../services/task-service.js"
 
 let tarefas = undefined
 
@@ -50,12 +50,8 @@ document.querySelector('form').addEventListener('submit', async event => {
 function mostrarTarefa(){
     const mostrarTarefaPendente = document.querySelector('.tarefas-pendentes')
 
-    // console.log(mostrarTarefaPendente)
-
     const tarefaPendente = tarefas.filter(tarefa => tarefa.completed == false)
     let tarefaPendenteHTML = ''
-
-    // console.log(tarefaPendente)
 
     for(let tarefa of tarefaPendente){
         tarefaPendenteHTML += `
@@ -68,31 +64,40 @@ function mostrarTarefa(){
       </li>`
     }
     mostrarTarefaPendente.innerHTML = tarefaPendenteHTML
-
-    // console.log(mostrarTarefaPendente)   
 }
 
-const completeTarefaCheckboxes = document.querySelectorAll('.not-done')
-    completeTarefaCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('click', event => {
-            concluirTarefa(event.target.dataset.id, event.target.dataset.completed)
-        })
-})
+// mostrar tarefas concluidas
 
-const tarefasConcluidas = document.querySelector('.tarefas-terminadas')
+function concluirTarefa(){
+    const mostrarTarefaConcluida = document.querySelector('.tarefas-terminadas')
+    // console.log(mostrarTarefaPendente)
+
+    const tarefaConcluida = tarefas.filter(tarefa => tarefa.completed)
+    let tarefaConcluidaHTML = ''
+
+    for(let tarefa of tarefaConcluida){
+        tarefaConcluidaHTML += `
+        <li class="tarefa" id="${tarefa.id}">
+        <div class="done"></div>
+        <div class="descricao">
+          <p class="nome">${tarefa.description}</p>
+          <p class="timestamp">Criada em: ${tarefa.createdAt}</p>
+        </div>
+      </li>`
+    }
+    mostrarTarefaConcluida.innerHTML = tarefaConcluidaHTML
+}
 
 
-
-
-
+// clicar no botao e criar a tarefa
 
 
 // encerrar sessão
 
-// const botaoSair = document.getElementById('closeApp')
-// botaoSair.addEventListener('click', event => {
-//     event.preventDefault()
-//     sair()
+const botaoSair = document.getElementById('closeApp')
+botaoSair.addEventListener('click', event => {
+    // event.preventDefault()
+    sair()
 
-//     // console.log(botaoSair)
-// })
+    // console.log(botaoSair)
+})

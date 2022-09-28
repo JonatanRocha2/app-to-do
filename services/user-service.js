@@ -1,5 +1,5 @@
 import { urlBase2 } from "./base-url-service.js"
-import { getToken, setToken } from "./storage-service.js"
+import { deleteToken, getToken, setToken } from "./storage-service.js"
 
 let minhaHeader = new Headers()
 minhaHeader.append("Content-Type", "application/json")
@@ -91,9 +91,9 @@ async function getUser(){
     })
 }
 
-// function sair(){
-//     deleteToken()
-//     location.href = '../index.html'
-// }
+function sair(){
+    deleteToken()
+    location.href = '../index.html'
+}
 
-export { login, cadastro, getUser }
+export { login, cadastro, getUser, sair }
